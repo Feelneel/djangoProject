@@ -1,13 +1,20 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    {% block title %}Home{% endblock %}
 </head>
     <body>
+        {% comment %}
+        {% include 'header.html' %}
+        {% endcomment %}
+        
+        {% block body%}        
         <center>
-            <h1>Welcome</h1>
+            <h1>Welcome to MyBookStore</h1>
             <hr>
             {% comment %}
             <h5>You login at <i>{{curdate}}</i></h5>
@@ -18,7 +25,7 @@
                 {{lastname}}
             {% endwith %}
                 
-            {% endcomment %}
+            
             <h3><mark>
             <!-- DTL if else -->
                 {% if hour >= 1 and hour < 12 %}
@@ -33,10 +40,10 @@
 
             </mark>
             </h3>
-
+            {% endcomment %}
             <!-- Showing Book Data -->
-
-            <table border="1" cellspacing="4px" cellpadding="8px">
+             <h1>Books Details</h1>
+            <table class="table table-bordered table-striped">
                 <thead>
                     <th>Sr.No</th>
                     <th>ISBN</th>
@@ -62,13 +69,18 @@
                       <td>{{x.dop}}</td>
                       <td>{{x.description}}</td>
                       <td>
-                        <img src="{{x.photo.url}}" alt="{{x.title}}" width="300px" height="200px">
+                        <img src="{{x.photo.url}}" alt="{{x.title}}" width="100px" height="100px">
                       </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
+
         </center>
+        {% endblock %}
+        {% comment %}
+        {% include 'footer.html' %}
+        {% endcomment %}
     </body>
 </html>

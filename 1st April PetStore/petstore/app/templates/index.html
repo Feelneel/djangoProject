@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}PetStore{% endblock %}
+</head>
+    <body>        
+        {% block body%}
+        <div class="container mt-3" >
+          <div class="row">
+            <h2>Search By Gender</h2>
+            <a href="/searchbygender/?gender=male" >Male</a>  <br/>
+            <a href="/searchbygender/?gender=female" >Female</a>
+          </div>
+        </div>
+
+        <!-- carousel -->
+        <div class="container mt-3" >
+            <div class="row">
+                <div id="carouselExample" class="carousel slide" >
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="1000">
+                        <img src="{% static 'images/petstore1.jpg' %}" class="d-block w-100" alt="..." width="500px" height="300px">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="1000">
+                        <img src="{% static 'images/petstore2.jpg' %}" class="d-block w-100" alt="..."  width="500px" height="300px">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="1000">
+                        <img src="{% static 'images/petstore3.jpg' %}" class="d-block w-100" alt="..."  width="500px" height="300px">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+
+            </div>
+        </div>
+        
+        <!-- Showing Pet Data -->
+
+        {% for m in messages %}
+        <h1><mark>{{m}}</mark></h1>
+        {% endfor %}
+
+        <div class="container mt-3">
+            <div class="row">        
+                {% for x in allpets %}
+                <div class="col-md-3">
+                    <div class="card" style="width: 16rem;">
+                        <img src="{{x.photo.url}}" class="card-img-top" alt="">
+                        <div class="card-body">
+                          <h5 class="card-title">{{x.petname}}</h5>
+                          <p class="card-text">{{x.description}}</p>
+                          <a href="/petdetails/{{x.petid}}" class="btn btn-primary">View More</a>
+                          <a href="#" class="btn btn-danger">Adopt Now</a>
+                        </div>
+                      </div>
+                </div>
+                {% endfor %}        
+            </div>
+        </div>
+
+        {% endblock %}
+    </body>
+</html>

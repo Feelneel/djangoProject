@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}PetStore{{petdata.petname}}{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <img src="{{petdata.photo.url}}" alt="" width="400px" height="300px" />
+        <h2>Name:{{petdata.petname}}</h2>
+        <h4>Age:{{petdata.age}}</h4>
+        <h4>Gender:{{petdata.gender}}</h4>
+        <p><b>description:{{petdata.description}}</b></p>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h2><a href="{% url 'PetRegister' %}">Register for new pet</a></h2>
+
+        {% for m in messages %}
+        <h1><mark>{{m}}</mark></h1>
+        {% endfor %}
+
+        {% for x in allpets %}
+        <div class="col-md-3">
+            <div class="card" style="width: 15rem;">
+                <img src="{{x.photo.url}}" class="card-img-top" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.petname}}</h5>
+                  <p class="card-text">{{x.description}}</p>
+                  <a href="/PetUpdate/{{x.pk}}" class="btn btn-primary">Edit</a>
+                  <a href="/PetDelete/{{x.pk}}" class="btn btn-danger">Remove</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
